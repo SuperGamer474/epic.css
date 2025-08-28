@@ -1,0 +1,187 @@
+# EPIC.CSS
+
+**Epic.css** is a comprehensive, dark-themed, 3D-styled UI stylesheet that provides an extensive design system and utility classes so you can rapidly build dramatic, modern interfaces with minimal setup.
+
+This README explains installation, usage, core classes, examples, customization options, accessibility notes, performance tips, and licensing.
+
+---
+
+## Table of Contents
+
+1. [Install](#install)
+2. [Quick usage (HTML)](#quick-usage-html)
+3. [Key features & classes](#key-features--classes)
+4. [Examples: Hero, Card, Header, Modal](#examples)
+5. [Fonts & Google Fonts](#fonts--google-fonts)
+6. [Customization & Theming](#customization--theming)
+7. [Accessibility](#accessibility)
+8. [Performance & bundling tips](#performance--bundling-tips)
+9. [Troubleshooting](#troubleshooting)
+
+---
+
+## Install
+
+Choose one of these installation methods:
+
+### 1) Link the file locally (Recommended)
+
+Download and copy the `epic.css` file into your project's folder and add to your HTML:
+
+```html
+<!-- The original epic.css -->
+<link rel="stylesheet" href="epic.css">
+
+<!-- The minified version of epic.css -->
+<link rel="stylesheet" href="epic.min.css">
+```
+
+### 2) Use via CDN
+
+add to your HTML:
+
+```html
+<!-- The original epic.css -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SuperGamer474/epic.css/epic.css">
+
+<!-- The minified version of epic.css -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/SuperGamer474/epic.css/epic.min.css">
+```
+
+---
+
+## Quick usage (HTML)
+
+> Use `data-text` on `.epic-title` for perfect layered rendering.
+
+Basic page skeleton:
+
+```html
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Epic Demo</title>
+    <link rel="stylesheet" href="epic.css">
+  </head>
+  <body>
+    <header class="header header--site container">
+      <div class="brand brand-logo">EPIC</div>
+      <div class="search">
+        <input class="input" placeholder="Search...">
+      </div>
+      <button class="btn primary">Primary</button>
+    </header>
+
+    <main class="container mt-3">
+      <h1 class="epic-title epic-h1 epic-shine halo" data-text="THE EPIC TITLE">THE EPIC TITLE</h1>
+
+      <section class="grid auto mt-3 gap-md">
+        <div class="card card-3d lit">
+          <div class="title">Card Title</div>
+          <p class="desc">This is an epic card with depth and glass-like surface.</p>
+          <button class="btn gradient">Action</button>
+        </div>
+
+        <div class="card glass">
+          <div class="title">Another Card</div>
+          <p class="desc">Glass surface with slight blur and border.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+```
+
+---
+
+## Key features & classes
+
+This stylesheet includes the following major groups of utilities and components. Use them directly in markup:
+
+* **Typography & Display**: `.epic-title`, `.epic-h1`, `.epic-h2`, `.epic-h3` (Orbitron + Poppins display fonts)
+* **Buttons**: `.btn`, with variants `.primary`, `.ghost`, `.gradient`, `.danger`, `.icon`, `.small`, `.large`, `.raised`
+* **Forms**: `.input`, `.textarea`, `.label`, `.form-row`, `.ctrl`, `.toggle`
+* **Surfaces**: `.card`, `.glass`, `.neumorph`, `.surface-deep`, `.card-3d`, `.lit`
+* **Layout**: `.container`, `.grid`, `.flex`, `.stack`, `.sidebar`, `.header`, `.navbar`
+* **Modals & Tooltips**: `.modal-backdrop`, `.modal`, `.tooltip`, `.popover`
+* **Data display**: `.table`, `.badge`, `.progress`, `.avatar`, `.media`
+* **Code**: `.code` with monospace styling (Roboto Mono)
+* **Utilities**: spacing (`.mt-*`, `.p-*`), text size (`.text-*`), alignment, shadows, `.shadow-3d`, `.float`, `.shimmer`
+
+---
+
+## Examples
+
+The `epic.css` file contains ready-to-use markup examples for:
+
+* **Hero**: use `.hero` + `.epic-title` for a dramatic page header.
+* **Card**: `.card.card-3d.lit` for depth + lighting.
+* **Header**: `.header--site` for brand + search + actions.
+* **Modal**: create a modal with `.modal-backdrop` and `.modal`.
+
+These examples are included in the `epic.css` file header comments and the top of this README in the repo. Open and copy-paste the example markup to get started quickly.
+
+---
+
+## Fonts & Google Fonts
+
+`epic.css` imports these Google Fonts at the top (via `@import`):
+
+* **Orbitron** — display / titles
+* **Poppins** — UI text
+* **Roboto Mono** — code and monospace
+
+---
+
+## Customization & Theming
+
+`epic.css` uses CSS custom properties at `:root` for colors, radii, shadows, and transitions. Customize these to alter the theme:
+
+```css
+:root{
+  --accent-1: #7c5cff;
+  --accent-2: #00d4ff;
+  --bg-900: #06070a;
+  --text-primary: #e6eef6;
+  --radius-md: 12px;
+}
+```
+
+### Light theme
+
+Add `data-theme="light"` to your `<html>` element to enable the light overrides included in the stylesheet.
+
+### Removing heavy features
+
+If you need to reduce CSS size for production, remove:
+
+* the `@import` fonts (self-host or use system fonts)
+* large animation keyframes (`epic-shimmer`, `shimmer`, `float`)
+* 3D title rules if you don't use them
+
+---
+
+## Accessibility
+
+* Focus states are present (`.focus-ring`) and elements include `:focus` styles; ensure your interactive components are keyboard accessible.
+* The `.epic-title` relies on `background-clip:text` for the gradient face; fallback text color is provided for older browsers.
+* Keep sufficient color contrast for critical text and controls. Adjust CSS variables as needed.
+
+---
+
+## Performance & bundling tips
+
+* Minify CSS and serve with gzip or brotli.
+* Consider splitting the file into `epic-core.css` (utilities + layout) and `epic-display.css` (heavy title effects, animations) if you need smaller initial payloads.
+* Self-host fonts (WOFF2) to improve TTFB and use `font-display:swap` in `@font-face`.
+
+---
+
+## Troubleshooting
+
+* If title gradients or `background-clip:text` appear solid, ensure the browser supports `-webkit-background-clip:text` and the element isn't forced to `color` by other styles.
+* If fonts don't load, check CSP / mixed-content issues or remove `@import` and self-host fonts.
+
+---
